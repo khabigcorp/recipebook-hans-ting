@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+
+{% block body %}
+    <h2>{{name}}</h2>
+    <ul>
+        {% for ingredient in ingredients %}
+            <li>{{ingredient.name}}: {{ingredient.quantity}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
