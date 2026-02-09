@@ -67,3 +67,7 @@ ctx = {
         }
     ]
 }
+
+class RecipeListView(TemplateView):
+
+class RecipeInfoView(TemplateView):
