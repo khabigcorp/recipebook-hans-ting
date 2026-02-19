@@ -20,5 +20,5 @@ from ledger import views
 from ledger.views import RecipeInfoView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ledger/', include(('ledger.urls', 'ledger'), namespace="ledger")),
+    path('/', include(('ledger.urls', 'ledger'), namespace="ledger")),
 ]
