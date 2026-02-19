@@ -18,9 +18,9 @@ class RecipeInfoView(TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         recipe_id = int(self.kwargs.get('recipe_id'))
-        recipe_title = Recipe.objects.filter(pk=recipe_id).title
-        ingredients = RecipeIngredient.objects.filter(corresponding_recipe__title=recipe_title)
+        recipe_name = Recipe.objects.filter(pk=recipe_id).first().name
+        ingredients = RecipeIngredient.objects.filter(corresponding_recipe__name=recipe_name)
 
         ctx['ingredients'] = ingredients
-        ctx['name'] = recipe
+        ctx['name'] = recipe_name
         return ctx
