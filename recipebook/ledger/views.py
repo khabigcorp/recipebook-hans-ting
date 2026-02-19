@@ -5,9 +5,11 @@ from django.views.generic import TemplateView
 from .models import Recipe
 # Create your views here.
 class RecipeListView(TemplateView):
-    recipes = Recipe.objects.all()
-    ctx = {"recipes": recipes}
+    template_name = "ledger/recipe_list.html"
+
     def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx["recipes"] = Recipe.objects.all()
         return ctx
 
 class RecipeInfoView(TemplateView):
