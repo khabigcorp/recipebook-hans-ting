@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from ledger import views
-
+from ledger.views import RecipeInfoView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('recipe/', include('ledger.urls', namespace=""))
+    path('recipes/', include('ledger.urls', namespace="")),
+    path('recipe/<int:recipe_id>', RecipeInfoView.as_view(), name='recipe-info')
 ]
