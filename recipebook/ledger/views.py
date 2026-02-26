@@ -21,6 +21,6 @@ class RecipeInfoView(TemplateView):
         recipe_name = Recipe.objects.filter(pk=recipe_id).first().name
         ingredients = RecipeIngredient.objects.filter(corresponding_recipe__name=recipe_name)
 
-        ctx['ingredients'] = ingredients
+        ctx['ingredients'] = [{"quantity": ri.quantity, "name": ri.corresponding_ingredient.name} for ri in ingredients]
         ctx['name'] = recipe_name
         return ctx
