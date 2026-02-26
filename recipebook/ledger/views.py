@@ -1,28 +1,37 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-
+"""Module that lists views of ledger app."""
 from django.views.generic import TemplateView
 from .models import Recipe, RecipeIngredient
 # Create your views here.
+
+
 class RecipeListView(TemplateView):
+    """View to list all recipes."""
+
     template_name = "ledger/recipe_list.html"
 
     def get_context_data(self, **kwargs):
+        """Get context data."""
         ctx = super().get_context_data(**kwargs)
         ctx["recipes"] = Recipe.objects.all()
         return ctx
 
+
 class RecipeInfoView(TemplateView):
+    """View to show info per recipe."""
+
     template_name = 'ledger/recipe_info.html'
 
     def get_context_data(self, **kwargs):
+        """Get context data."""
         ctx = super().get_context_data(**kwargs)
         recipe_id = int(self.kwargs.get('recipe_id'))
         recipe_name = Recipe.objects.filter(pk=recipe_id).first().name
-        ingredients = RecipeIngredient.objects.filter(corresponding_recipe__name=recipe_name)
+        ingredients = RecipeIngredient.objects.filter(
+            corresponding_recipe__name=recipe_name
+        )
 
         ctx['ingredients'] = [
-            {"quantity": ri.quantity, "name": ri.corresponding_ingredient.name} 
+            {"quantity": ri.quantity, "name": ri.corresponding_ingredient.name}
             for ri in ingredients
         ]
         ctx['name'] = recipe_name
