@@ -15,7 +15,7 @@ class Ingredient(models.Model):
 
     def get_absolute_url(self):
         """Get url to Ingredient object."""
-        return reverse("ledger:recipe-info", kwargs={"recipe_id": self.pk})
+        return reverse("ledger:recipe-info", kwargs={"pk": self.pk})
 
 
 class Recipe(models.Model):
@@ -29,7 +29,7 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         """Get url to Recipe object."""
-        return reverse("ledger:recipe-info", kwargs={"recipe_id": self.pk})
+        return reverse("ledger:recipe-info", kwargs={"pk": self.pk})
 
 
 class RecipeIngredient(models.Model):
