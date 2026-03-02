@@ -1,6 +1,8 @@
 """File that stores models of ledger app."""
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
+from django.core.validators import MinLengthValidator
 # Create your models here.
 
 
@@ -46,4 +48,15 @@ class RecipeIngredient(models.Model):
         Recipe,
         on_delete=models.CASCADE,
         related_name='ingredients'
+    )
+
+
+class Profile(models.Model):
+    """Model that represents profiles."""
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    short_bio = models.CharField(validators=[
+            MinLengthValidator(256, message="Must be at least 255 characters long")
+        ]
     )
