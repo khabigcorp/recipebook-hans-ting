@@ -15,6 +15,7 @@ class RecipeListView(TemplateView):
         """Get context data."""
         ctx = super().get_context_data(**kwargs)
         ctx["recipes"] = Recipe.objects.all()
+        ctx["page_name"] = "Recipe List"
         return ctx
 
 
@@ -31,7 +32,7 @@ class RecipeInfoView(LoginRequiredMixin, TemplateView):
         ingredients = RecipeIngredient.objects.filter(
             corresponding_recipe__name=recipe_name
         )
-
+        ctx["page_name"] = "Recipe Info"
         ctx['ingredients'] = [
             {"quantity": ri.quantity, "name": ri.corresponding_ingredient.name}
             for ri in ingredients
