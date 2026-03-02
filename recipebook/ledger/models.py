@@ -40,7 +40,7 @@ class Recipe(models.Model):
         Profile,
         on_delete=models.CASCADE,
         related_name='recipes',
-        default="ROMELL IAN DE LA CRUZ"
+        null=True
     )
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)

@@ -1,6 +1,7 @@
 """Module that lists views of ledger app."""
 from django.views.generic import TemplateView
 from .models import Recipe, RecipeIngredient
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
@@ -16,7 +17,7 @@ class RecipeListView(TemplateView):
         return ctx
 
 
-class RecipeInfoView(TemplateView):
+class RecipeInfoView(LoginRequiredMixin, TemplateView):
     """View to show info per recipe."""
 
     template_name = 'ledger/recipe_info.html'
