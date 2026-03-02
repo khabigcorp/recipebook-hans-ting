@@ -38,8 +38,5 @@ class RecipeInfoView(LoginRequiredMixin, TemplateView):
             for ri in ingredients
         ]
         ctx['name'] = recipe_name
+        ctx['author_name'] = Recipe.objects.filter(pk=recipe_id).first().author.name
         return ctx
-
-
-class CustomPasswordResetView(PasswordResetView):
-    html_email_template_name = "registration/password_reset_email.html"

@@ -17,8 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from ledger import views
-from ledger.views import RecipeInfoView, CustomPasswordResetView
-from django.contrib.auth.views import LogoutView, PasswordResetConfirmView
+from ledger.views import RecipeInfoView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('ledger.urls', 'ledger'), namespace="ledger")),
