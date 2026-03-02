@@ -4,6 +4,16 @@
     </head>
     <body>
         <h1> Recipe Book </h1>
+        {% if request.user.is_authenticated%}
+            Hello, {{ request.user }}
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+            <button type="submit">Logout</button>
+                {{form.as_p}}
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
         {% block body %}{% endblock %}
     </body>
 </html>

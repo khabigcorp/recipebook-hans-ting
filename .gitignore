@@ -1,4 +1,5 @@
 django-hoa1
+*.pyc
 recipebook/ledger/__pycache__/
 recipebook/ledger/migrations/__pycache__/
 recipebook/recipebook/__pycache__/
