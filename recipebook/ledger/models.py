@@ -3,7 +3,6 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
-from django.utils import timezone
 # Create your models here.
 
 
@@ -13,7 +12,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     short_bio = models.CharField(validators=[
-            MinLengthValidator(256, message="Must be at least 255 characters long")
+            MinLengthValidator(
+                256,
+                message="Must be at least 255 characters long"
+            )
         ]
     )
 
@@ -44,6 +46,7 @@ class Recipe(models.Model):
     )
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         """Return string version of Recipe."""
         return self.name
