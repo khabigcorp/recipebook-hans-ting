@@ -21,7 +21,7 @@ class RecipeInfoView(LoginRequiredMixin, TemplateView):
     """View to show info per recipe."""
 
     template_name = 'ledger/recipe_info.html'
-
+    login_url = '/login/'
     def get_context_data(self, **kwargs):
         """Get context data."""
         ctx = super().get_context_data(**kwargs)
