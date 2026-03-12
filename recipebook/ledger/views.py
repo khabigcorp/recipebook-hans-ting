@@ -1,6 +1,6 @@
 """Module that lists views of ledger app."""
 from django.views.generic import TemplateView
-from .models import Recipe, RecipeIngredient
+from .models import Recipe, RecipeIngredient, RecipeImage
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
@@ -31,10 +31,14 @@ class RecipeInfoView(LoginRequiredMixin, TemplateView):
         ingredients = RecipeIngredient.objects.filter(
             corresponding_recipe__name=recipe.name
         )
+        images = RecipeImage.objects.filter(
+            corresponding_recipe__pk=recipe_id
+        )
         ctx['ingredients'] = [
             {"quantity": ri.quantity, "name": ri.corresponding_ingredient.name}
             for ri in ingredients
         ]
         ctx['name'] = recipe.name
         ctx['author_name'] = recipe.author.name
+        ctx['images'] = images
         return ctx
