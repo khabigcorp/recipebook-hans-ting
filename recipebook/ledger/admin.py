@@ -1,6 +1,6 @@
 """Main admin panel for ledger project."""
 from django.contrib import admin
-from .models import Recipe, RecipeIngredient
+from .models import Recipe, RecipeIngredient, Profile
 # Register your models here.
 
 
@@ -16,5 +16,8 @@ class RecipeAdmin(admin.ModelAdmin):
     model = Recipe
     inlines = [RecipeIngredientInline,]
 
+class ProfileAdmin(admin.modelAdmin):
+    model = Profile
 
 admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(Profile, ProfileAdmin)
