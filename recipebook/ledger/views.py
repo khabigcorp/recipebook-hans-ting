@@ -35,7 +35,7 @@ class RecipeInfoView(LoginRequiredMixin, TemplateView):
         images = RecipeImage.objects.filter(
             corresponding_recipe__pk=recipe_id
         )
-        ctx['recipe'] = recipe.name
+        ctx['recipe'] = recipe
         ctx['ingredients'] = ingredients
         ctx['images'] = images
         return ctx
