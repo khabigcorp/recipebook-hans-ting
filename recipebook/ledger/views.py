@@ -1,5 +1,6 @@
 """Module that lists views of ledger app."""
 from django.views.generic import TemplateView
+from .forms import RecipeForm
 from .models import Recipe, RecipeIngredient, RecipeImage
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.

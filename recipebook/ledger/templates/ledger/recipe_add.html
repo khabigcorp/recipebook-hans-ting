@@ -1,0 +1,8 @@
+{% extends 'index.html' %}
+<h2> Recipe Add </h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="sumbit" name="submit" value="Save Task">
+</form>
+{% endblock %}
