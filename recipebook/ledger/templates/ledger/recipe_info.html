@@ -2,8 +2,8 @@
 
 {% block body %}
     <h2>Recipe Info</h2>
-    <h3>{{name}}</h3>
-    <p> Made by: {{author_name}}</p>
+    <h3>{{recipe.name}}</h3>
+    <p> Made by: {{recipe.author_name}}</p>
     <ul>
         {% for ingredient in ingredients %}
             <li>{{ingredient.quantity}} {{ ingredient.name }}</li>
@@ -12,4 +12,5 @@
     {% for image in images %}
         <img src="{{ image.image.url }}" alt ="{{ image.description }}"/>
     {% endfor %}
+    <a href="/recipe/{{ pk }}/add"></a>
 {% endblock %}
