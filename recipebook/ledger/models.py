@@ -11,11 +11,13 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
-    short_bio = models.CharField(validators=[
+    short_bio = models.CharField(
+        max_length=1000,
+        validators=[
             MinLengthValidator(
                 256,
                 message="Must be at least 255 characters long"
-            )
+            ),
         ]
     )
 
