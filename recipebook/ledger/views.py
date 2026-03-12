@@ -42,3 +42,9 @@ class RecipeInfoView(LoginRequiredMixin, TemplateView):
         ctx['author_name'] = recipe.author.name
         ctx['images'] = images
         return ctx
+
+
+class RecipeAddView(LoginRequiredMixin, TemplateView):
+    model = Recipe
+    form_class = RecipeForm
+    template_name = 'recipe_add.html'
