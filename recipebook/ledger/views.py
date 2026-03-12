@@ -67,4 +67,7 @@ class RecipeAddImageView(LoginRequiredMixin, CreateView):
         form = RecipeImageForm(request.POST, request.FILES)
         if form.is_valid():
             image = form.save()
-            return redirect('ledger:recipe-info', pk=image.corresponding_recipe.pk)
+            return redirect(
+                'ledger:recipe-info',
+                pk=image.corresponding_recipe.pk
+            )
