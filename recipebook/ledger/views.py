@@ -56,8 +56,9 @@ class RecipeAddImageView(LoginRequiredMixin, CreateView):
     template_name = 'ledger/recipe_add_image.html'
 
     def get_context_data(self, **kwargs):
+        recipe = Recipe.objects.filter(pk=self.kwargs['pk']).first()
         context = super().get_context_data(**kwargs)
-        form = RecipeImageForm()
+        form = RecipeImageForm(initial={'corresponding_recipe': recipe})
         context['pk'] = self.kwargs['pk']
         context['form'] = form
         return context
