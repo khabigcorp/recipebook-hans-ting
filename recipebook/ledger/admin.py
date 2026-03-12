@@ -16,7 +16,7 @@ class RecipeAdmin(admin.ModelAdmin):
     model = Recipe
     inlines = [RecipeIngredientInline,]
 
-class ProfileAdmin(admin.modelAdmin):
+class ProfileAdmin(admin.ModelAdmin):
     model = Profile
 
 admin.site.register(Recipe, RecipeAdmin)
