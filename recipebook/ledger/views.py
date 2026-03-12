@@ -1,8 +1,9 @@
 """Module that lists views of ledger app."""
 from django.views.generic import TemplateView, CreateView
-from .forms import RecipeForm
+from .forms import RecipeForm, RecipeImageForm
 from .models import Recipe, RecipeIngredient, RecipeImage
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 # Create your views here.
 
 
@@ -42,6 +43,27 @@ class RecipeInfoView(LoginRequiredMixin, TemplateView):
 
 
 class RecipeAddView(LoginRequiredMixin, CreateView):
+    """View for adding recipes."""
     model = Recipe
     form_class = RecipeForm
     template_name = 'ledger/recipe_add.html'
+
+
+class RecipeAddImageView(LoginRequiredMixin, CreateView):
+    "View for adding images to recipes."
+    model = RecipeImage
+    form_class = RecipeImageForm
+    template_name = 'ledger/recipe_add_image.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = RecipeImageForm()
+        context['pk'] = self.kwargs['pk']
+        context['form'] = form
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = RecipeImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save()
+            return redirect('ledger:recipe-info', pk=image.corresponding_recipe.pk)

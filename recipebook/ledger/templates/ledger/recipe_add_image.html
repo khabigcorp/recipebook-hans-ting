@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+{% block body %}
+    <h2> Recipe Add image </h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Image for Recipe</button>
+    </form>
+    <a href="/recipe/{{ pk }}">Return to Recipe</a>
+{% endblock %}
