@@ -1,14 +1,9 @@
 from django import forms
 
-from .models import TaskGroup, Task
+from .models import RecipeImage, Recipe
 
 
-class TaskForm(forms.ModelForm):
+class RecipeForm(forms.ModelForm):
     class Meta:
-        model = Task
+        model = Recipe
         fields = '__all__'
-        widgets = {
-            'due_date': forms.TextInput(
-                attrs = { 'type': 'datetime-local'}
-            )
-        }
